@@ -1,0 +1,175 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center align the entire content */
+}
+
+/* Header styles */
+header {
+    position: relative;
+    padding: 20px;
+    background-color: #8ba9aa;
+    height: 80px;
+}
+
+/* Align the image to the left */
+header img {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 4000px;
+    height: 100px;
+}
+header h1{
+    padding-left: 100px;
+}
+/* Auth buttons container (positioned in the top-right) */
+.auth-buttons {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+
+/* Button styles */
+.auth-buttons .btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #edf3ef;
+    color: rgb(8, 8, 8);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.auth-buttons .btn:hover {
+    background-color: #fdfdfd;
+}
+
+/* Center the <h1> text */
+h2{
+    margin-top: 100px;
+    font-size: 36px;
+    color: #333;
+    text-align: center; /* Center the <h1> text */
+}
+/* Container for the background image and overlay */
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* To make sure everything stays within the container */
+}
+
+/* Set up the background image */
+.background-image {
+    /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(8px); /* This adds the blur effect */
+    z-index: -1; /* Make sure the image stays in the background */
+}
+
+/* Overlay with text */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the text */
+    color: rgb(8, 8, 8);
+    text-align: center;
+    z-index: 1; /* Ensures text is on top of the blurred background */
+}
+
+.text-overlay h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.text-overlay p {
+    font-size: 1.5em;
+}
+
+/* Styling for the text overlay */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #101211;
+    font-family: Arial, sans-serif;
+}
+
+/* Animation for the text overlay */
+.text-overlay h1, .text-overlay p {
+    opacity: 0; /* Start with invisible text */
+    transform: translateY(50px); /* Start with the text 50px below */
+    animation: fadeInUp 2s ease-out forwards; /* Apply the animation */
+}
+
+/* Define the animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional: Add a slight delay to the paragraph */
+.text-overlay p {
+    animation-delay: 1s; /* Delay paragraph animation */
+}
+.footer{
+    background-color: #333;
+
+}
+.social-icon-style1 {
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+footer h5 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    font-size: 2rem; /* Controls the icon size */
+    margin: 0 15px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #0073e6; /* Color when hovering over the icon */
+}
+
+/* Optional: Style for footer text */
+footer p {
+    font-size: 1rem;
+    margin-top: 10px;
+}

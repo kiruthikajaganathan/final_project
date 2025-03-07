@@ -1,0 +1,176 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Background Styling */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+    position: absolute;
+}
+
+/* Logo Section */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.logo-container img {
+    width: 420px;
+    height: auto;
+}
+
+.logo-container h1 {
+    margin-top: 40px;
+    font-size: 30px;
+    color: rgb(203, 199, 224);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Login Box */
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    width: 320px;
+    margin-top: 160px;
+}
+
+
+/* Form Elements */
+h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,select {
+    width: 100%;
+    padding: 12px;
+    background: #eee;
+    margin-bottom: 15px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+/* Button Styling */
+button {
+    width: 90%;
+    padding: 12px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Register Link */
+p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+p a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+.success {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+/* Input Fields with Icons */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 2px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.input-container i {
+    color: #555;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    background: transparent;
+    margin: 10px;
+}
+.toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+}
+.input-container input,
+.input-container select {
+    font-size: 17px;
+    line-height: 10px;
+    margin:1px;
+}

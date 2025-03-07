@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ede5e5;
+    padding: 20px;
+}
+
+.container {
+    background: #38ccd3;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #245533;
+}
+
+th {
+    background: #a7654e;
+    color: rgb(153, 61, 61);
+}
+
+/* Error and Success Message Styles */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: block; /* Ensures the span takes full width */
+    margin: 5px 0 0 0 !important; /* Adjust spacing as needed */
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Remove default margins and padding from form elements */
+#studentform .form-control, 
+#studentform .form-select {
+    margin-bottom: 0 !important;
+    padding: 8px; 
+    border: none !important; 
+    line-height: normal;
+    box-sizing: border-box; 
+}
+
+#studentform .form-label {
+    margin-bottom: 0; 
+}
+
+/* Remove padding from parent elements */
+#studentform .col-md-6, 
+#studentform .col-md-4 { 
+    padding-bottom: 0 !important;
+}
+
+/* Optional: Add specific rules for spacing between elements */
+#studentform .row > div {
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+/* Target the span elements specifically */
+#studentform span {
+    margin-bottom: 0 !important;
+    padding: 0 !important; 
+}
+
+/* Style for the error pop-up */
+.error-popup {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000; /* Ensure it's on top */
+}
+.bold-text {
+    font-weight: bold;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+}
+/* Style for the close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.marks-input {
+    position: relative;
+}
+
+.marks-addon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
