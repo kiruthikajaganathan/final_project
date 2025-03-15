@@ -76,12 +76,6 @@ th {
     margin-bottom: 10px; /* Adjust as needed */
 }
 
-/* Target the span elements specifically */
-#studentform span {
-    margin-bottom: 0 !important;
-    padding: 0 !important; 
-}
-
 /* Style for the error pop-up */
 .error-popup {
     background-color: #f8d7da;
@@ -95,13 +89,16 @@ th {
     transform: translateX(-50%); /* Center horizontally */
     z-index: 1000; /* Ensure it's on top */
 }
+
 .bold-text {
     font-weight: bold;
 }
+
 .error-message {
     color: red;
     font-size: 0.9em;
 }
+
 /* Style for the close button */
 .close-btn {
     position: absolute;
@@ -109,6 +106,7 @@ th {
     right: 10px;
     cursor: pointer;
 }
+
 .marks-input {
     position: relative;
 }
@@ -118,4 +116,71 @@ th {
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.marks-cell {
+    position: relative; /* To position the addon */
+}
+
+.marks-addon {
+    position: absolute;
+    top: 50%;
+    right: 5px;                      /* Adjust spacing from the right */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Add some space below the row */
+}
+
+.medium-instruction-container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    display: flex; /* Use flexbox for inner content */
+    align-items: center;
+}
+
+.medium-instruction-container label {
+    margin-right: 10px;
+}
+
+.medium-options {
+    display: flex; /* Use flexbox for radio buttons */
+    align-items: center;
+}
+
+.medium-options label {
+    margin-right: 10px;
+}
+
+.cutoff-container {
+    position: relative;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: fit-content;
+}
+
+.cutoff-container label {
+    display: inline-block;
+    visibility: visible;
+    opacity: 1;
+    color: black;
+    height: auto;
+    width: auto;
+    z-index: 2;
+    margin-right: 10px;
+}
+
+#cutoff {
+    display: inline-block;
+    width: 150px;
+    vertical-align: middle;
 }

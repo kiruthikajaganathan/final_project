@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="student.css">
     <style>
         .bold-text {
@@ -24,6 +25,13 @@
             color: green;
             font-size: 0.9em;
         }
+        .marks-input {
+            display: flex;
+            align-items: center;
+        }
+        .marks-addon {
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -33,31 +41,37 @@
         <form id="studentform" action="/students" method="POST" enctype="multipart/form-data">
             <h4 class="bold-text">PERSONAL INFORMATION</h4>
             <div class="row">
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
+                    <label for="applicationNo">Application No:</label>
+                    <input type="text" class="form-control" id="applicationNo" name="applicationNo" required>
+                    <span id="applicationno-error" class="error-message"></span>
+                </div>
+                <div class="col-md-4 bold-text">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                     <span id="name-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="registerNo">Register Number</label>
                     <input type="text" class="form-control" id="registerNo" name="registerNo" required>
                     <span id="registerno-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="dob">Date of Birth</label>
                     <input type="date" class="form-control" id="dob" name="dob" required>
                     <span id="dob-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="gender">Gender</label>
                     <select class="form-control" id="gender" name="gender">
+                        <option value="">Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
                     </select>
                     <span id="gender-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="department" class="form-label">Department:</label>
                     <select class="form-select" id="department" name="department" required>
                         <option value="">Select</option>
@@ -71,7 +85,7 @@
                     </select>
                     <span id="department-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="batch" class="form-label">Batch:</label>
                     <select class="form-select" id="batch" name="batch" required>
                         <option value="">Select</option>
@@ -92,7 +106,7 @@
                     </select>
                     <span id="batch-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="bloodGroup" class="form-label">Blood Group:</label>
                     <select class="form-select" id="bloodGroup" name="bloodGroup" required>
                         <option value="">Select</option>
@@ -108,22 +122,22 @@
                     </select>
                     <span id="bloodgroup-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="mobileNo" class="form-label">Mobile No:</label>
                     <input type="text" class="form-control" id="mobileNo" name="mobileNo" required>
                     <span id="mobileno-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="aadharNo" class="form-label">Aadhaar No:</label>
                     <input type="text" class="form-control" id="aadharNo" name="aadharNo" required>
                     <span id="aadharno-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="email" class="form-label">Email ID:</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                     <span id="email-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="nationality" class="form-label">Nationality:</label>
                     <select class="form-select" id="nationality" name="nationality" required>
                         <option value="">Select</option>
@@ -132,7 +146,7 @@
                     </select>
                     <span id="nationality-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="religion" class="form-label">Religion:</label>
                     <select class="form-select" id="religion" name="religion" required>
                         <option value="">Select</option>
@@ -146,7 +160,7 @@
                     </select>
                     <span id="religion-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="community" class="form-label">Community:</label>
                     <select class="form-select" id="community" name="community" required>
                         <option value="">Select</option>
@@ -159,7 +173,7 @@
                     </select>
                     <span id="community-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="motherTongue" class="form-label">Mother Tongue:</label>
                     <select class="form-select" id="motherTongue" name="motherTongue" required>
                         <option value="">Select</option>
@@ -173,8 +187,26 @@
                     </select>
                     <span id="mothertongue-error" class="error-message"></span>
                 </div>
-                
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
+                    <label for="modeOfAdmission" class="form-label">Mode of Admission:</label>
+                    <select class="form-select" id="modeOfAdmission" name="modeOfAdmission" required>
+                        <option value="">Select</option>
+                        <option>Management Quota</option>
+                        <option>Government Quota</option>
+                    </select>
+                    <span id="modeofadmission-error" class="error-message"></span>
+                </div>
+                <div class="col-md-4 bold-text">
+                    <label for="selectedGroup" class="form-label">Selected Group in 12th:</label>
+                    <select class="form-select" id="selectedGroup" name="selectedGroup" required>
+                        <option value="">Select</option>
+                        <option>Science with Mathematics (PCM)</option>
+                        <option>Science with Biology (PCB)</option>
+                        <option>Computer Science</option>
+                    </select>
+                    <span id="selectedgroup-error" class="error-message"></span>
+                </div>
+                <div class="col-md-4 bold-text">
                     <label for="year" class="form-label">Year:</label>
                     <select class="form-select" id="year" name="year" required>
                         <option value="">Select</option>
@@ -185,7 +217,7 @@
                     </select>
                     <span id="year-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="hostel" class="form-label">Hosteller/Day Scholar:</label>
                     <select class="form-select" id="hostel" name="hostel" required>
                         <option value="">Select</option>
@@ -194,7 +226,7 @@
                     </select>
                     <span id="hostel-error" class="error-message"></span>
                 </div>
-                <div class="col-md-6 bold-text">
+                <div class="col-md-4 bold-text">
                     <label for="regular" class="form-label">Regular/Lateral:</label>
                     <select class="form-select" id="regular" name="regular" required>
                         <option value="">Select</option>
@@ -203,15 +235,15 @@
                     </select>
                     <span id="regular-error" class="error-message"></span>
                 </div>
-            </div>
-            <div class="col-md-6 bold-text">
-                <label for="first" class="form-label">First Graduate:</label>
-                <select class="form-select" id="first" name="first" required>
-                    <option value="">Select</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </select>
-                <span id="first-error" class="error-message"></span>
+                <div class="col-md-4 bold-text">
+                    <label for="first" class="form-label">First Graduate:</label>
+                    <select class="form-select" id="first" name="first" required>
+                        <option value="">Select</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                    <span id="first-error" class="error-message"></span>
+                </div>
             </div>
             <h4 class="mt-4 bold-text">Address</h4>
             <div class="row">
@@ -280,136 +312,270 @@
             </div>
             <h4 class="mt-4 bold-text">Parent Information</h4>
             <div class="row">
-                <div class="col-md-4 bold-text">
-                    <label for="fatherName">Father's Name</label>
-                    <input type="text" class="form-control" id="fatherName" name="fatherName">
-                    <span id="fathername-error" class="error-message"></span>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 bold-text">
+                            <label for="fatherName">Father's Name</label>
+                            <input type="text" class="form-control" id="fatherName" name="fatherName">
+                            <span id="fathername-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">
+                            <label for="fatherMobile" class="form-label">Father's Mobile No:</label>
+                            <input type="text" class="form-control" id="fatherMobile" name="fatherMobile" required>
+                            <span id="fathermobile-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">              <label for="fatherOccupation" class="form-label">Father's Occupation:</label>
+                            <input type="text" class="form-control" id="fatherOccupation" name="fatherOccupation">
+                            <span id="fatheroccupation-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">
+                            <label for="fatherAnnualIncome" class="form-label">Father's Annual Income:</label>
+                            <input type="number" class="form-control" id="fatherAnnualIncome" name="fatherAnnualIncome" required>
+                            <span id="fatherannualincome-error" class="error-message"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 bold-text">
-                    <label for="fatherOccupation" class="form-label">Father's Occupation:</label>
-                    <input type="text" class="form-control" id="fatherOccupation" name="fatherOccupation">
-                    <span id="fatheroccupation-error" class="error-message"></span>
-                </div>
-                <div class="col-md-4 bold-text">
-                    <label for="fatherMobile" class="form-label">Father's Mobile No:</label><input type="text" class="form-control" id="fatherMobile" name="fatherMobile" required>
-                    <span id="fathermobile-error" class="error-message"></span>
-                </div>
-                <div class="col-md-4 bold-text">
-                    <label for="motherName">Mother's Name</label>
-                    <input type="text" class="form-control" id="motherName" name="motherName">
-                    <span id="mothername-error" class="error-message"></span>
-                </div>
-                <div class="col-md-4 bold-text">
-                    <label for="motherOccupation" class="form-label">Mother's Occupation:</label>
-                    <input type="text" class="form-control" id="motherOccupation" name="motherOccupation">
-                    <span id="motheroccupation-error" class="error-message"></span>
-                </div>
-                <div class="col-md-4 bold-text">
-                    <label for="motherMobile" class="form-label">Mother's Mobile No:</label>
-                    <input type="text" class="form-control" id="motherMobile" name="motherMobile" required>
-                    <span id="mothermobile-error" class="error-message"></span>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-3 bold-text">
+                            <label for="motherName">Mother's Name</label>
+                            <input type="text" class="form-control" id="motherName" name="motherName">
+                            <span id="mothername-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">
+                            <label for="motherMobile" class="form-label">Mother's Mobile No:</label>
+                            <input type="text" class="form-control" id="motherMobile" name="motherMobile" required>
+                            <span id="mothermobile-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">
+                            <label for="motherOccupation" class="form-label">Mother's Occupation:</label>
+                            <input type="text" class="form-control" id="motherOccupation" name="motherOccupation">
+                            <span id="motheroccupation-error" class="error-message"></span>
+                        </div>
+                        <div class="col-md-3 bold-text">
+                            <label for="motherAnnualIncome" class="form-label">Mother's Annual Income:</label>
+                            <input type="number" class="form-control" id="motherAnnualIncome" name="motherAnnualIncome" required>
+                            <span id="motherannualincome-error" class="error-message"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-           
-                    <h4 class="mt-4 bold-text">School Study Information</h4>
-                    <table class="table">
-                        <colgroup>
-                            <col style="width: 10%">
-                            <col style="width: 49%">
-                            <col style="width: 18.5%">
-                            <col style="width: 22.5%">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="font-weight: bold;">Class</th>
-                                <th class="text-center" style="font-weight: bold;">Name of Institution</th>
-                                <th class="text-center" style="font-weight: bold;">Marks</th>
-                                <th class="text-center" style="font-weight: bold;">Year of Passing</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">VI</td>
-                                <td><input type="text" class="form-control" name="school6" id="school6">
-                                    <span id="school6-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="marks6" id="marks6" value="Pass" oninput="updateMarkFormat(this, 100)">
-                                    <span id="marks6-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="year6" id="year6">
-                                    <span id="year6-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">VII</td>
-                                <td><input type="text" class="form-control" name="school7" id="school7">
-                                    <span id="school7-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="marks7" id="marks7" value="Pass" oninput="updateMarkFormat(this, 100)">
-                                    <span id="marks7-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="year7" id="year7">
-                                    <span id="year7-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">VIII</td>
-                                <td><input type="text" class="form-control" name="school8" id="school8">
-                                    <span id="school8-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="marks8" id="marks8" value="Pass" oninput="updateMarkFormat(this, 100)">
-                                    <span id="marks8-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="year8" id="year8">
-                                    <span id="year8-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">IX</td>
-                                <td><input type="text" class="form-control" name="school9" id="school9">
-                                    <span id="school9-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="marks9" id="marks9" value="Pass" oninput="updateMarkFormat(this, 100)">
-                                    <span id="marks9-error" class="error-message"></span></td>
-                                <td><input type="text" class="form-control" name="year9" id="year9">
-                                    <span id="year9-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">X</td>
-                                <td><input type="text" class="form-control" name="school10" id="school10">
-                                    <span id="school10-error" class="error-message"></span></td>
-                                <td>
-                                    <div class="marks-input">
-                                        <input type="text" class="form-control" name="marks10" id="marks10" oninput="updateMarkFormat(this, 500)">
-                                        <span class="marks-addon" id="marks10-addon">/500</span>
-                                    </div>
-                                    <span id="marks10-error" class="error-message"></span>
-                                </td>
-                                <td><input type="text" class="form-control" name="year10" id="year10">
-                                    <span id="year10-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">XI</td>
-                                <td><input type="text" class="form-control" name="school11" id="school11">
-                                    <span id="school11-error" class="error-message"></span></td>
-                                <td>
-                                    <div class="marks-input">
-                                        <input type="text" class="form-control" name="marks11" id="marks11" oninput="updateMarkFormat(this, 600)">
-                                        <span class="marks-addon" id="marks11-addon">/600</span>
-                                    </div>
-                                    <span id="marks11-error" class="error-message"></span>
-                                </td>
-                                <td><input type="text" class="form-control" name="year11" id="year11">
-                                    <span id="year11-error" class="error-message"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">XII</td>
-                                <td><input type="text" class="form-control" name="school12" id="school12">
-                                    <span id="school12-error" class="error-message"></span></td>
-                                <td>
-                                    <div class="marks-input">
-                                        <input type="text" class="form-control" name="marks12" id="marks12" oninput="updateMarkFormat(this, 600)">
-                                        <span class="marks-addon" id="marks12-addon">/600</span>
-                                    </div>
-                                    <span id="marks12-error" class="error-message"></span>
-                                </td>
-                                <td><input type="text" class="form-control" name="year12" id="year12">
-                                    <span id="year12-error" class="error-message"></span></td>
-                            </tr>
+            <h4 class="mt-4 bold-text">School Study Information</h4>
+            <table class="table">
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 45%">
+                    <col style="width: 22.5%">
+                    <col style="width: 22.5%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="text-center" style="font-weight: bold;">Class</th>
+                        <th class="text-center" style="font-weight: bold;">Name of Institution</th>
+                        <th class="text-center" style="font-weight: bold;">Marks</th>
+                        <th class="text-center" style="font-weight: bold;">Year of Passing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">VI</td>
+                        <td>
+                            <input type="text" class="form-control" name="school6" id="school6">
+                            <span id="school6-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="marks6" id="marks6" value="Pass" oninput="updateMarkFormat(this, 100)">
+                            <span id="marks6-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year6" id="year6">
+                            <span id="year6-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">VII</td>
+                        <td>
+                            <input type="text" class="form-control" name="school7" id="school7">
+                            <span id="school7-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="marks7" id="marks7" value="Pass" oninput="updateMarkFormat(this, 100)">
+                            <span id="marks7-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year7" id="year7">
+                            <span id="year7-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">VIII</td>
+                        <td>
+                            <input type="text" class="form-control" name="school8" id="school8">
+                            <span id="school8-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="marks8" id="marks8" value="Pass" oninput="updateMarkFormat(this, 100)">
+                            <span id="marks8-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year8" id="year8">
+                            <span id="year8-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">IX</td>
+                        <td>
+                            <input type="text" class="form-control" name="school9" id="school9">
+                            <span id="school9-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="marks9" id="marks9" value="Pass" oninput="updateMarkFormat(this, 100)">
+                            <span id="marks9-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year9" id="year9">
+                            <span id="year9-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">X</td>
+                        <td>
+                            <input type="text" class="form-control" name="school10" id="school10">
+                            <span id="school10-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <div class="marks-input">
+                                <input type="text" class="form-control" name="marks10" id="marks10" oninput="updateMarkFormat(this, 500)">
+                                <span class="marks-addon" id="marks10-addon">/500</span>
+                            </div>
+                            <span id="marks10-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year10" id="year10">
+                            <span id="year10-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">XI</td>
+                        <td>
+                            <input type="text" class="form-control" name="school11" id="school11">
+                            <span id="school11-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <div class="marks-input">
+                                <input type="text" class="form-control" name="marks11" id="marks11" oninput="updateMarkFormat(this, 600)">
+                                <span class="marks-addon" id="marks11-addon">/600</span>
+                            </div>
+                            <span id="marks11-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year11" id="year11">
+                            <span id="year11-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">XII</td>
+                        <td>
+                            <input type="text" class="form-control" name="school12" id="school12">
+                            <span id="school12-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <div class="marks-input">
+                                <input type="text" class="form-control" name="marks12" id="marks12" oninput="updateMarkFormat(this, 600)">
+                                <span class="marks-addon" id="marks12-addon">/600</span>
+                            </div>
+                            <span id="marks12-error" class="error-message"></span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="year12" id="year12">
+                            <span id="year12-error" class="error-message"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 class="mt-4 bold-text">12th Standard Marks</h4>
+                <table class="table" id="twelfthMarksTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No.</th>
+                            <th class="text-center">Name of the Subjects</th>
+                            <th class="text-center">Marks Obtained</th>
+                            <th class="text-center">Year of Passing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         </tbody>
-                    </table>
-          
+                </table>
+                            
+                
+                <div class="form-row"> 
+                <div class="medium-instruction-container">
+                    <label>Medium of Instruction:</label>
+                    <div class="medium-options">
+                        <label for="tamilMedium">
+                            <input type="radio" id="tamilMedium" name="mediumOfInstruction" value="Tamil">
+                            Tamil
+                        </label>
+                        <label for="englishMedium">
+                            <input type="radio" id="englishMedium" name="mediumOfInstruction" value="English">
+                            English
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="cutoff-container">
+                    <label for="cutoff">Cut Off:</label>
+                    <input type="text" class="form-control" id="cutoff" name="cutoff" readonly>
+                </div>
+            </div>
 
+            <h4 class="mt-4 fw-bold">Fees Details</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fee Type</th>
+                        <th>Allocated Fees (₹)</th>
+                        <th>Date</th>
+                        <th>UPI</th>
+                        <th>Paid/Unpaid</th>
+                        <th>Pending</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Admission Fees</td>
+                        <td><input type="text" class="form-control" id="admissionFee" value="6000" readonly></td>
+                        <td><input type="date" class="form-control" id="admissionDate"></td>
+                        <td><input type="text" class="form-control" id="admissionUpi"></td>
+                        <td><input type="text" class="form-control" id="admissionPaidStatus"></td>
+                        <td><input type="text" class="form-control" id="admissionPending"></td>
+                    </tr>
+                    <tr>
+                        <td>Tuition Fees</td>
+                        <td><input type="text" class="form-control" id="tuitionFee" readonly></td>
+                        <td><input type="date" class="form-control" id="tuitionDate"></td>
+                        <td><input type="text" class="form-control" id="tuitionUpi"></td>
+                        <td><input type="text" class="form-control" id="tuitionPaidStatus"></td>
+                        <td><input type="text" class="form-control" id="tuitionPending"></td>
+                    </tr>
+                    <tr id="hostel-row" style="display: none;">
+                        <td>Hostel Fees</td>
+                        <td><input type="text" class="form-control" id="hostelFee" readonly></td>
+                        <td><input type="date" class="form-control" id="hostelDate"></td>
+                        <td><input type="text" class="form-control" id="hostelUpi"></td>
+                        <td><input type="text" class="form-control" id="hostelPaidStatus"></td>
+                        <td><input type="text" class="form-control" id="hostelPending"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Fees</td>
+                        <td><input type="text" class="form-control" id="totalFee" readonly></td>
+                        <td><input type="date" class="form-control" id="totalDate"></td>
+                        <td><input type="text" class="form-control" id="totalUpi"></td>
+                        <td><input type="text" class="form-control" id="totalPaidStatus"></td>
+                        <td><input type="text" class="form-control" id="totalPending"></td>
+                    </tr>
+                </tbody>
+            </table>
 
             <h4 class="bold-text">Upload Certificates</h4>
             <div class="mb-3 bold-text">
@@ -457,10 +623,33 @@
                 <input type="file" class="form-control" name="photo" accept=".pdf,.jpg, .png">
                 <span id="photo-error" class="error-message"></span>
             </div>
+            <div class="mb-3 bold-text">
+              <label class="form-label">Student Signature:</label>
+              <input type="file" class="form-control" name="studentSignature" accept=".pdf,.jpg, .png">
+              <span id="studentsignature-error" class="error-message"></span>
+            </div>
+
+            <div class="form-row mt-3">
+                <label for="admissionStatus" style="font-weight: bold; font-size: 1.2em;">Admission Status:</label>
+                <div class="admission-status-options">
+                    <label>
+                        <input type="radio" id="admitted" name="admissionStatus[status]" value="Admitted">
+                        <span style="font-weight: bold; font-size: 1.1em;">Admitted</span>
+                    </label>
+                    <label>
+                        <input type="radio" id="pending" name="admissionStatus[status]" value="Pending">
+                        <span style="font-weight: bold; font-size: 1.1em;">Pending</span>
+                    </label>
+                    <label>
+                        <input type="radio" id="notAdmitted" name="admissionStatus[status]" value="Rejected">
+                        <span style="font-weight: bold; font-size: 1.1em;">Not Admitted</span>
+                    </label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-success mt-3">Submit</button>
         </form>
     </div>
-
+    
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -469,7 +658,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="errorModalBody">
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -485,7 +674,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="successModalBody">
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -493,203 +682,506 @@
         </div>
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // State Districts Data
         const stateDistricts = {
             "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
-            "Arunachal Pradesh": ["Tawang", "West Kameng", "East Kameng", "Papum Pare", "Kurung Kumey", "Kra Daadi", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Siang", "Upper Siang", "Lower Siang", "Lower Dibang Valley", "Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding"],
-            "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"],
-            "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
-            "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
+            "Arunachal Pradesh": ["Tawang", "West Kameng", "East Kameng", "Papum Pare", "Kurung Kumey", "Kra Daadi", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Upper Siang", "Lower Siang", "Lower Dibang Valley", "Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding"],
+            "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup Metropolitan", "Kamrup", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Dima Hasao", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"],
+            "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran (Motihari)", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur (Bhabua)", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger (Monghyr)", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia (Purnea)", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
+            "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada (South Bastar)", "Dhamtari", "Durg", "Gariyaband", "Janjgir-Champa", "Jashpur", "Kabirdham (Kawardha)", "Kanker (North Bastar)", "Kondagaon", "Korba", "Korea (Koriya)", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur  ", "Surguja"],
             "Goa": ["North Goa", "South Goa"],
-            "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udepur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"],
-            "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
-            "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
-            "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela-Kharsawan", "Simdega", "West Singhbhum"],
-            "Karnataka": ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayanagara", "Vijayapura", "Yadgir"],
+            "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha (Palanpur)", "Bharuch", "Bhavnagar", "Botad", "Chhota Udepur", "Dahod", "Dangs (Ahwa)", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kachchh", "Kheda (Nadiad)", "Mahisagar", "Mehsana", "Morbi", "Narmada (Rajpipla)", "Navsari", "Panchmahal (Godhra)", "Patan", "Porbandar", "Rajkot", "Sabarkantha (Himmatnagar)", "Surat", "Surendranagar", "Tapi (Vyara)", "Vadodara", "Valsad"],
+            "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram (Gurgaon)", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
+            "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul &amp; Spiti", "Mandi", "Shimla", "Sirmaur (Sirmour)", "Solan", "Una"],
+            "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribag", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela-Kharsawan", "Simdega", "West Singhbhum"],
+            "Karnataka": ["Bagalkote", "Ballari (Bellary)", "Belagavi (Belgaum)", "Bengaluru (Bangalore) Rural", "Bengaluru (Bangalore) Urban", "Bidar", "Chamarajanagar", "Chikballapur", "Chikkamagaluru (Chikmagalur)", "Chitradurga", "Dakshina Kannada", "Davangere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi (Gulbarga)", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru (Mysore)", "Raichur", "Ramanagara", "Shivamogga (Shimoga)", "Tumakuru (Tumkur)", "Udupi", "Uttara Kannada (Karwar)", "Vijayapura (Bijapur)", "Yadgir"],
             "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
-            "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
             "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
             "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
             "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
-            "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
-            "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Saitual", "Serchhip"],
-            "Nagaland": ["Chümoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Niuland", "Noklak", "Peren", "Phek", "Tseminyu", "Tuensang", "Wokha", "Zünheboto"],
-            "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"],
-            "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Nawanshahr (Shahid Bhagat Singh Nagar)", "Pathankot", "Patiala", "Rupnagar", "Sangrur", "Tarn Taran"],
+            "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills ", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
+            "Mizoram": ["Aizawl", "Champhai", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
+            "Nagaland": ["Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"],
+            "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghapur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar (Keonjhar)", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Sonepur", "Sundargarh"],
+            "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Mohali", "Muktsar", "Nawanshahr (Shahid Bhagat Singh Nagar)", "Pathankot", "Patiala", "Rupnagar", "Sahibzada Ajit Singh Nagar (Mohali)", "Sangrur", "Tarn Taran"],
             "Rajasthan": ["Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
             "Sikkim": ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
-            "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal–Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal Rural", "Warangal Urban", "Yadadri Bhuvanagiri"],
+            "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+            "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhoopalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal", "Nagarkurnool", "Nalgonda", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal (Rural)", "Warangal (Urban)", "Yadadri Bhuvanagiri"],
             "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
-            "Uttar Pradesh": ["Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Faizabad", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
+            "Uttar Pradesh": ["Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi (Chatrapati SahujiMaharaj Nagar)", "Amroha (J.P. Nagar)", "Auraiya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Faizabad", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur (Panchsheel Nagar)", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kanshiram Nagar (Kasganj)", "Kaushambi", "Kushinagar (Padrauna)", "Lakhimpur - Kheri", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "RaeBareli", "Rampur", "Saharanpur", "Sambhal (Bhim Nagar)", "Sant Kabir Nagar", "Shahjahanpur", "Shamali (Prabuddh Nagar)", "Shravasti", "Siddharth Nagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
             "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
-            "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"]
+            "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur (South Dinajpur)", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman (West Bardhaman)", "Paschim Medinipur (West Medinipur)", "Purba Bardhaman (East Bardhaman)", "Purba Medinipur (East Medinipur)", "Purulia", "South 24 Parganas", "Uttar Dinajpur (North Dinajpur)"]
         };
-
         function updateDistricts() {
-            const stateSelect = document.getElementById("state");
-            const districtSelect = document.getElementById("district");
-            const selectedState = stateSelect.value;
-            districtSelect.innerHTML = '<option value="">Select District</option>';
-            if (selectedState in stateDistricts) {
-                stateDistricts[selectedState].forEach(district => {
-                    let option = document.createElement("option");
-                    option.value = district;
-                    option.textContent = district;
-                    districtSelect.appendChild(option);
-                });
-            }
-        }
-
-        function clearErrors() {
-            document.querySelectorAll(".error-message").forEach(errorSpan => {
-                errorSpan.textContent = '';
+        const stateSelect = document.getElementById("state");
+        const districtSelect = document.getElementById("district");
+        const selectedState = stateSelect.value;
+        districtSelect.innerHTML = '<option value="">Select District</option>';
+        if (selectedState in stateDistricts) {
+            stateDistricts[selectedState].forEach(district => {
+                let option = document.createElement("option");
+                option.value = district;
+                option.textContent = district;
+                districtSelect.appendChild(option);
             });
         }
+    }
 
-        function clearMessages() {
-            const messageContainer = document.getElementById("message-container");
-            messageContainer.innerHTML = "";
+function clearErrors() {
+    document.querySelectorAll(".error-message").forEach(errorSpan => {
+        errorSpan.textContent = "";
+    });
+}
+
+function clearMessages() {
+    const messageContainer = document.getElementById("message-container");
+    messageContainer.innerHTML = "";
+}
+
+function displaySuccessMessage(message) {
+    const successModalBody = document.getElementById("successModalBody");
+    successModalBody.innerHTML = message;
+
+    const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+    successModal.show();
+}
+
+function displayErrorMessage(message) {
+    const errorModalBody = document.getElementById("errorModalBody");
+    errorModalBody.innerHTML = message;
+
+    const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+    errorModal.show();
+}
+
+function displayErrors(errors) {
+    const errorPopup = document.createElement('div');
+    errorPopup.classList.add('error-popup');
+    errorPopup.innerHTML = errors.join("<br>");
+
+    const messageContainer = document.getElementById("message-container");
+    messageContainer.innerHTML = "";
+    messageContainer.appendChild(errorPopup);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("studentform").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        clearErrors();
+        clearMessages();
+
+        if (!validateMarks()) {
+            return;
         }
 
-        function displaySuccessMessage(message) {
-            const successModalBody = document.getElementById("successModalBody");
-            successModalBody.innerHTML = message;
+        try {
+            const formData = new FormData(document.getElementById("studentform"));
+            const address = {
+                doorNo: formData.get("doorNo"),
+                street: formData.get("street"),
+                villageCity: formData.get("villageCity"),
+                state: formData.get("state"),
+                district: formData.get("district"),
+                pinCode: formData.get("pinCode")
+            };
+            formData.append("address", JSON.stringify(address));
+            formData.delete("doorNo");
+            formData.delete("street");
+            formData.delete("villageCity");
+            formData.delete("state");
+            formData.delete("district");
+            formData.delete("pinCode");
 
-            const successModal = new bootstrap.Modal(document.getElementById("successModal"));
-            successModal.show();
-        }
+            const response = await fetch("http://localhost:3000/students", {
+                method: "POST",
+                body: formData,
+            });
 
-        function displayErrorMessage(message) {
-            const errorModalBody = document.getElementById("errorModalBody");
-            errorModalBody.innerHTML = message;
-
-            const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
-            errorModal.show();
-        }
-
-        function displayErrors(errors) {
-            // 1. Create a pop-up element (styled with CSS)
-            const errorPopup = document.createElement('div');
-            errorPopup.classList.add('error-popup');
-            errorPopup.innerHTML = errors.join('<br>');
-
-            // 2. Add the pop-up to the page
-            const messageContainer = document.getElementById('message-container');
-            messageContainer.innerHTML = '';
-            messageContainer.appendChild(errorPopup);
-        }
-
-        document.getElementById("studentform").addEventListener("submit", async function (event) {
-            event.preventDefault();
-            clearErrors();
-            clearMessages();
-            try {
-                const formData = new FormData(document.getElementById("studentform"));
-                const response = await fetch("http://localhost:3000/students", {
-                    method: "POST",
-                    body: formData
-                });
-                if (response.ok) {
-                    displaySuccessMessage("Student details recorded successfully!");
-                    document.getElementById("studentform").reset();
+            if (response.ok) {
+                displaySuccessMessage("Student details recorded successfully!");
+                document.getElementById("studentform").reset();
+            } else {
+                const errorData = await response.json();
+                if (errorData.error === "Validation Failed") {
+                    displayErrors(errorData.details);
+                } else if (errorData.missingFields) { // Check for missing fields
+                    displayMissingFields(errorData.missingFields); // Display missing fields
                 } else {
-                    const errorData = await response.json();
-                    if (errorData.error === "Validation Failed") {
-                        displayErrors(errorData.details);
-                    } else {
-                        displayErrorMessage(errorData.error || "Form submission failed.");
+                    displayErrorMessage(errorData.error || "Form submission failed.");
+                }
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            displayErrorMessage("An error occurred during form submission.");
+        }
+    });
+
+    document.getElementById("mobileNo").addEventListener("input", function (e) {
+        if (e.target.value.length > 10) {
+            e.target.value = e.target.value.slice(0, 10);
+            document.getElementById("mobileno-error").textContent = "Mobile number should not exceed 10 digits";
+        } else {
+            document.getElementById("mobileno-error").textContent = "";
+        }
+    });
+
+    document.getElementById("fatherMobile").addEventListener("input", function (e) {
+        if (e.target.value.length > 10) {
+            e.target.value = e.target.value.slice(0, 10);
+            document.getElementById("fathermobile-error").textContent = "Mobile number should not exceed 10 digits";
+        } else {
+            document.getElementById("fathermobile-error").textContent = "";
+        }
+    });
+
+    document.getElementById("motherMobile").addEventListener("input", function (e) {
+        if (e.target.value.length > 10) {
+            e.target.value = e.target.value.slice(0, 10);
+            document.getElementById("mothermobile-error").textContent = "Mobile number should not exceed 10 digits";
+        } else {
+            document.getElementById("mothermobile-error").textContent = "";
+        }
+    });
+
+    document.getElementById("aadharNo").addEventListener("input", function (e) {
+        if (e.target.value.length > 12) {
+            e.target.value = e.target.value.slice(0, 12);
+            document.getElementById("aadharno-error").textContent = "Aadhaar number should not exceed 12 digits";
+        } else {
+            document.getElementById("aadharno-error").textContent = "";
+        }
+    });
+
+    ["marks6", "marks7", "marks8", "marks9", "marks10", "marks11", "marks12"].forEach((fieldId) => {
+        document.getElementById(fieldId).addEventListener("input", function (e) {
+            const input = e.target.value.toLowerCase();
+            if (input === "pass" || input === "all pass" || !isNaN(input)) {
+                document.getElementById(fieldId + "-error").textContent = "";
+            } else {
+                document.getElementById(fieldId + "-error").textContent = 'Marks must be a number or "Pass"';
+            }
+        });
+    });
+
+    document.getElementById("selectedGroup").addEventListener("change", populatetwelfthMarksTable);
+
+    if (document.getElementById("selectedGroup").value) {
+        populatetwelfthMarksTable();
+    }
+
+    const marksTableBody = document.querySelector("#twelfthMarksTable tbody");
+    marksTableBody.addEventListener("input", function (event) {
+        const input = event.target;
+        if (input.classList.contains("marks-input")) {
+            calculateCutoff();
+            const addonSpan = document.getElementById(input.id + "-addon");
+            if (addonSpan) {
+                updateMarkFormat(input, 100);
+            } else {
+                console.error("Addon span not found for input:", input.id);
+            }
+        }
+    });
+
+    const admissionStatusOptions = document.querySelectorAll('input[name="admissionStatus"]');
+    admissionStatusOptions.forEach((option) => {
+        option.addEventListener("change", function () {
+            admissionStatusOptions.forEach((otherOption) => {
+                if (otherOption !== this) {
+                    otherOption.checked = false;
+                }
+            });
+        });
+    });
+});
+
+function showAlert(message) {
+    const alertDiv = document.createElement("div");
+    alertDiv.className = "alert alert-danger alert-popup";
+    alertDiv.innerHTML = message;
+    document.body.appendChild(alertDiv);
+    alertDiv.style.position = "fixed";
+    alertDiv.style.top = "50%";
+    alertDiv.style.left = "50%";
+    alertDiv.style.transform = "translate(-50%, -50%)";
+    setTimeout(() => {
+        document.body.removeChild(alertDiv);
+    }, 2000);
+}
+
+const subjectMapping = {
+    "Science with Mathematics (PCM)": ["Tamil", "English", "Physics", "Chemistry", "Mathematics", "Biology"],
+    "Science with Biology (PCB)": ["Tamil", "English", "Physics", "Chemistry", "Zoology", "Botany"],
+    "Computer Science": ["Tamil", "English", "Physics", "Chemistry", "Mathematics", "Computer Science"]
+};
+
+function populatetwelfthMarksTable() {
+    const selectedGroup = document.getElementById("selectedGroup").value;
+    const table = document.getElementById("twelfthMarksTable");
+
+    if (table) {
+        const marksTableBody = table.querySelector("tbody");
+        if (marksTableBody) {
+            marksTableBody.innerHTML = "";
+            if (selectedGroup && subjectMapping[selectedGroup]) {
+                subjectMapping[selectedGroup].forEach((subject, index) => {
+                    const row = marksTableBody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+
+            cell1.textContent = index + 1;
+            cell2.textContent = subject;
+
+            const input = document.createElement("input");
+            input.type = "number";
+            input.classList.add("form-control", "marks-input");
+            input.id = subject.toLowerCase() + "Marks";
+            input.name = subject.toLowerCase() + "Marks";
+            input.dataset.subject = subject;
+            cell3.appendChild(input);
+
+            const span = document.createElement("span");
+            span.classList.add("marks-addon");
+            span.id = input.id + "-addon";
+            span.textContent = "/ 100";
+            cell3.style.position = "relative";
+            cell3.appendChild(span);
+
+            requestAnimationFrame(() => {
+                updateMarkFormat(input, 100);
+            });
+
+            const yearInput = document.createElement("input");
+            yearInput.type = "number";
+            yearInput.classList.add("form-control");
+            yearInput.id = subject.toLowerCase() + "Year";
+            cell4.appendChild(yearInput);
+            });
+            addMarksInputListeners();
+            }
+            } else {
+            console.error("Table body not found!");
+            }
+            } else {
+            console.error("Table not found!");
+            }
+            }
+
+            function addMarksInputListeners() {
+            const marksInputs = document.querySelectorAll(".marks-input");
+            marksInputs.forEach(input => {
+            input.addEventListener("input", function () {
+            calculateCutoff();
+            updateMarkFormat(this, 100);
+            });
+            });
+            }
+
+            function updateMarkFormat(input, maxMarks) {
+            const addonSpan = document.getElementById(input.id + "-addon");
+
+            if (addonSpan) {
+            if (input.value.toLowerCase() === "pass" || input.value.toLowerCase() === "all pass") {
+            addonSpan.style.display = "none";
+            input.value = "Pass";
+            } else if (!isNaN(input.value) && parseInt(input.value) > maxMarks) {
+            input.value = "";
+            showAlert("Marks cannot be greater than " + maxMarks);
+            } else {
+            addonSpan.style.display = "block";
+            }
+            } else {
+            console.error("Addon span not found for input:", input.id);
+            }
+            }
+
+            function calculateCutoff() {
+            const selectedGroup = document.getElementById("selectedGroup").value;
+            const marksInputs = document.querySelectorAll(".marks-input");
+            let cutoff = 0;
+            let subjectMarks = {};
+            marksInputs.forEach(input => {
+            const subject = input.dataset.subject;
+            const marks = parseFloat(input.value);
+            if (!isNaN(marks)) {
+            subjectMarks[subject] = marks;
+            }
+            });
+
+            switch (selectedGroup) {
+            case "Science with Mathematics (PCM)":
+            cutoff = subjectMarks["Mathematics"] + subjectMarks["Physics"] / 2 + subjectMarks["Chemistry"] / 2;
+            break;
+
+            case "Science with Biology (PCB)":
+            cutoff = (subjectMarks["Zoology"] + subjectMarks["Botany"]) / 2 + (subjectMarks["Physics"] + subjectMarks["Chemistry"]) / 4;
+            break;
+
+            case "Computer Science":
+            cutoff = (subjectMarks["Mathematics"] + subjectMarks["Computer Science"]) / 2 + (subjectMarks["Physics"] + subjectMarks["Chemistry"]) / 4;
+            break;
+
+            default:
+            cutoff = 0;
+            }
+
+            document.getElementById("cutoff").value = isNaN(cutoff) ? "" : cutoff.toFixed(2);
+            }
+
+            function validateMarks() {
+            let errors =[];
+            const selectedGroup = document.getElementById("selectedGroup").value;
+            const subjects = subjectMapping[selectedGroup] ||[];
+
+            subjects.forEach(subject => {
+            const marksInputId = subject.toLowerCase() + "Marks";
+            const marksInput = document.getElementById(marksInputId);
+
+            if (marksInput) {
+            const marksValue = marksInput.value.trim().toLowerCase();
+            if (isNaN(marksValue) && marksValue !== "pass" && marksValue !== "all pass") {
+            errors.push(`Valid ${subject} Marks are required.`);
+            }
+            }
+            });
+
+            if (errors.length > 0) {
+            displayErrors(errors);
+            return false;
+            }
+            return true;
+            }
+
+            function getUrlParameter(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            function displayMissingFields(missingFields) {
+            const list = document.getElementById('missingFieldsList');
+            const ul = document.createElement('ul');
+            missingFields.forEach(field => {
+            const li = document.createElement('li');
+            li.textContent = field;
+            ul.appendChild(li);
+            });
+            list.appendChild(ul);
+
+            // Show the modal
+            const missingFieldsModal = new bootstrap.Modal(document.getElementById("missingFieldsModal"));
+            missingFieldsModal.show();
+            }
+
+            const missingFieldsParam = getUrlParameter('missingFields');
+            if (missingFieldsParam) {
+            const missingFields = JSON.parse(decodeURIComponent(missingFieldsParam));
+            displayMissingFields(missingFields);
+            }
+            function updateFees() {
+        try {
+            let feeData = localStorage.getItem("feesData"); // Get data from localStorage
+            if (!feeData) {
+                alert("Fee details are not available. Please ask the admin to set them.");
+                return;
+            }
+    
+            let fees = JSON.parse(feeData);
+            let admissionFee = 6000; // Fixed Admission Fee
+            let tuitionFee = 0;
+            let hostelFee = 0;
+    
+            // SC/ST students have 0 tuition fee
+            let community = document.getElementById("community").value;
+            let department = document.getElementById("department").value;
+            let modeOfAdmission = document.getElementById("modeOfAdmission").value;
+            let firstGraduate = document.getElementById("first").value;
+            let hostelStatus = document.getElementById("hostel").value;
+    
+            if (community === "SC" || community === "ST") {
+                tuitionFee = 0;
+            } else {
+                let tuitionFeeEntry = fees.tuition.find(t => t.branch.includes(department));
+                if (tuitionFeeEntry) {
+                    if (modeOfAdmission === "Management Quota") {
+                        tuitionFee = tuitionFeeEntry.mq; // Management Quota Fees
+                    } else if (modeOfAdmission === "Government Quota") {
+                        // ✅ Check First Graduate (FG) condition
+                        tuitionFee = (firstGraduate === "Yes") ? tuitionFeeEntry.fg : tuitionFeeEntry.nonFg;
                     }
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                displayErrorMessage("An error occurred during form submission.");
             }
-        });
-
-
-        document.getElementById('cutoff').addEventListener('input', function (e) {
-            if (isNaN(e.target.value)) {
-                document.getElementById('cutoff-error').textContent = 'Cutoff must be a number';
-                e.target.value = '';
-            } else {
-                document.getElementById('cutoff-error').textContent = '';
-            }
-        });
-
-        document.getElementById('mobileNo').addEventListener('input', function (e) {
-            if (e.target.value.length > 10) {
-                e.target.value = e.target.value.slice(0, 10);
-                document.getElementById('mobileno-error').textContent = 'Mobile number should not exceed 10 digits';
-            } else {
-                document.getElementById('mobileno-error').textContent = '';
-            }
-        });
-
-        document.getElementById('fatherMobile').addEventListener('input', function (e) {
-            if (e.target.value.length > 10) {
-                e.target.value = e.target.value.slice(0, 10);
-                document.getElementById('fathermobile-error').textContent = 'Mobile number should not exceed 10 digits';
-            } else {
-                document.getElementById('fathermobile-error').textContent = '';
-            }
-        });
-
-        document.getElementById('motherMobile').addEventListener('input', function (e) {
-            if (e.target.value.length > 10) {
-                e.target.value = e.target.value.slice(0, 10);
-                document.getElementById('mothermobile-error').textContent = 'Mobile number should not exceed 10 digits';
-            } else {
-                document.getElementById('mothermobile-error').textContent = '';
-            }
-        });
-
-        document.getElementById('aadharNo').addEventListener('input', function (e) {
-            if (e.target.value.length > 12) {
-                e.target.value = e.target.value.slice(0, 12);
-                document.getElementById('aadharno-error').textContent = 'Aadhaar number should not exceed 12 digits';
-            } else {
-                document.getElementById('aadharno-error').textContent = '';
-            }
-        });
-
-        ['marks10', 'marks11', 'marks12'].forEach(fieldId => {
-            document.getElementById(fieldId).addEventListener('input', function (e) {
-                const input = e.target.value.toLowerCase();
-                if (input !== "pass" && input !== "all pass" && isNaN(input)) {
-                    document.getElementById(fieldId + '-error').textContent = 'Marks must be a number or "pass" or "all pass"';
-                } else {
-                    document.getElementById(fieldId + '-error').textContent = '';
+    
+            // Hostel Fee logic (Only show for Hosteller)
+            if (hostelStatus === "Hosteller") {
+                let hostelEntry = fees.hostel.find(h => h.branch.includes(department));
+                if (hostelEntry) {
+                    hostelFee = (community === "SC" || community === "ST") ? hostelEntry.scSt : hostelEntry.bcMbc;
                 }
-            });
-        });
-        function updateMarkFormat(input, maxMarks) {
-      const addonSpan = document.getElementById(input.id + '-addon');
-      if (input.value.toLowerCase() === "pass" || input.value.toLowerCase() === "all pass") {
-        addonSpan.style.display = 'none';
-        input.value = "Pass";
-      } else if (!isNaN(input.value) && parseInt(input.value) > maxMarks) {
-        input.value = "";
-        showAlert("Marks cannot be greater than " + maxMarks);
-      } else {
-        addonSpan.style.display = 'block';
-      }
+                document.getElementById("hostel-row").style.display = "table-row";
+            } else {
+                document.getElementById("hostel-row").style.display = "none";
+                hostelFee = 0;
+            }
+    
+            // ✅ Calculate Total Fees
+            let totalFee = parseInt(admissionFee) + parseInt(tuitionFee) + parseInt(hostelFee);
+    
+            // ✅ Update Fields
+            document.getElementById("tuitionFee").value = tuitionFee;
+            document.getElementById("hostelFee").value = hostelFee;
+            document.getElementById("totalFee").value = totalFee;
+        } catch (e) {
+            console.error("Error in updateFees:", e);
+            alert("An error occurred while updating fees. Please check the console.");
+        }
     }
 
-    function showAlert(message) {
-      const alertDiv = document.createElement('div');
-      alertDiv.className = 'alert alert-danger alert-popup';
-      alertDiv.innerHTML = message;
-      document.body.appendChild(alertDiv);
-      alertDiv.style.position = 'fixed';
-      alertDiv.style.top = '50%';
-      alertDiv.style.left = '50%';
-      alertDiv.style.transform = 'translate(-50%, -50%)';
-      setTimeout(() => {
-        document.body.removeChild(alertDiv);
-      }, 2000);
-    }
-    </script>
+// Event Listeners to update fees when selections change
+document.getElementById("department").addEventListener("change", updateFees);
+document.getElementById("hostel").addEventListener("change", updateFees);
+document.getElementById("community").addEventListener("change", updateFees);
+document.getElementById("modeOfAdmission").addEventListener("change", updateFees);
+document.getElementById("first").addEventListener("change", updateFees);
+document.querySelectorAll(".save-btn").forEach(button => {
+    button.addEventListener("click", function() {
+let row = this.closest("tr");
+let branch = row.cells[0].innerText;
+
+let tuitionEntry = feesData.tuition.find(t => t.branch === branch);
+let hostelEntry = feesData.hostel.find(h => h.branch.includes(branch));
+
+tuitionEntry.fg = row.querySelector(".fg").innerText.replace("₹", "").trim();
+tuitionEntry.nonFg = row.querySelector(".nonFg").innerText.replace("₹", "").trim();
+tuitionEntry.gq = row.querySelector(".gq").innerText.replace("₹", "").trim();
+tuitionEntry.mq = row.querySelector(".mq").innerText.replace("₹", "").trim();
+
+if (hostelEntry) {
+    hostelEntry.bcMbc = row.querySelector(".bcMbc").innerText.replace("₹", "").trim();
+    hostelEntry.scSt = row.querySelector(".scSt").innerText.replace("₹", "").trim();
+}
+
+// Store updated data in localStorage
+localStorage.setItem("feesData", JSON.stringify(feesData));
+
+row.querySelectorAll("td[contenteditable]").forEach(td => td.contentEditable = "false");
+row.querySelector(".edit-btn").style.display = "inline-block";
+row.querySelector(".save-btn").style.display = "none";
+
+alert("Fees updated successfully!");
+});
+});
+
+</script>
 </body>
 </html>

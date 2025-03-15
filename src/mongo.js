@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // ✅ MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/LoginFormPractice")
-
-.then(() => console.log("✅ MongoDB Connected Successfully"))
-    .catch((e) => console.log("❌ MongoDB Connection Failed:", e));
+const mongoURI = "mongodb+srv://divansan05:Divansan0076@clustername.mongodb.net/<database>?retryWrites=true&w=majority";
 
 // ✅ User Schema (For Login & Password Reset)
 const logInSchema = new mongoose.Schema({
@@ -20,8 +17,14 @@ const logInSchema = new mongoose.Schema({
 
 const LogInCollection = mongoose.model("LogInCollection", logInSchema);
 
-
 const studentSchema = new mongoose.Schema({
+    applicationNo: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        match: [/^[A-Za-z0-9\s.'-]+$/, "Invalid application number format"]
+    },
     name: {
         type: String,
         required: true,
@@ -30,17 +33,17 @@ const studentSchema = new mongoose.Schema({
         match: [/^[A-Za-z\s.'-]+$/, "Invalid name format"]
     },
     registerNo: {
-        type: String, // Changed to String to allow leading zeros
+        type: String,
         required: true,
         unique: true,
-        match: [/^\d{12}$/, "Invalid register number format (must be 15 digits)"]
+        match: [/^\d{12}$/, "Invalid register number format (must be 12 digits)"]
     },
     dob: {
         type: Date,
         required: true,
         validate: {
             validator: function (value) {
-                return value < new Date(); // Ensures date of birth is in the past
+                return value < new Date();
             },
             message: "Date of birth must be in the past"
         }
@@ -56,7 +59,7 @@ const studentSchema = new mongoose.Schema({
         trim: true
     },
     aadharNo: {
-        type: String, // Changed to String to allow leading zeros
+        type: String,
         required: true,
         unique: true,
         match: [/^\d{12}$/, "Invalid Aadhaar number format (must be 12 digits)"],
@@ -89,11 +92,13 @@ const studentSchema = new mongoose.Schema({
         match: [/^[A-Za-z\s]+$/, "Invalid community format"]
     },
     motherTongue: { type: String, required: true, trim: true },
+    modeOfAdmission: { type: String, required: true, trim: true },
+    selectedGroup: { type: String, required: true, trim: true },
     cutoff: {
         type: Number,
         required: true,
-        min: 0, // Set the minimum allowed cutoff
-        max: 200, // Set the maximum allowed cutoff
+        min: 0,
+        max: 200,
     },
     year: { type: String, enum: ["I", "II", "III", "IV"], required: true, trim: true },
     hostel: { type: String, enum: ["Hosteller", "Day Scholar"], required: true, trim: true },
@@ -132,7 +137,7 @@ const studentSchema = new mongoose.Schema({
             match: [/^[A-Za-z0-9\s.,/-]+$/, "Invalid district format"]
         },
         pinCode: {
-            type: String, // Changed to String to allow leading zeros
+            type: String,
             required: true,
             match: [/^\d{6}$/, "Invalid pincode format (must be 6 digits)"],
             trim: true
@@ -158,6 +163,11 @@ const studentSchema = new mongoose.Schema({
                 required: true,
                 match: [/^\d{10}$/, "Invalid mobile number format (must be 10 digits)"],
                 trim: true
+            },
+            annualIncome: {
+                type: Number,
+                required: true,
+                min: 0
             }
         },
         mother: {
@@ -178,12 +188,17 @@ const studentSchema = new mongoose.Schema({
                 required: true,
                 match: [/^\d{10}$/, "Invalid mobile number format (must be 10 digits)"],
                 trim: true
+            },
+            annualIncome: {
+                type: Number,
+                required: true,
+                min: 0
             }
         }
     },
 
     schoolDetails: [{
-        classLevel: { type: String, enum: ["X", "XI", "XII"], required: true },
+        classLevel: { type: String, enum: ["VI", "VII", "VIII", "IX", "X", "XI", "XII"], required: true },
         name: {
             type: String,
             required: true,
@@ -191,23 +206,35 @@ const studentSchema = new mongoose.Schema({
             match: [/^[A-Za-z0-9\s.,/'-]+$/, "Invalid school name format"]
         },
         marks: {
-            type: String, // Changed to String to store both numbers and "pass"
+            type: mongoose.Schema.Types.Mixed, // Allow Number or String
             required: true,
             validate: {
-                validator: function(value) {
-                    const input = value.toLowerCase();
-                    return input === "pass" || input=== "all pass" ||(!isNaN(input) && input >= 0 && input <= 600);
+                validator: function (value) {
+                    if (typeof value === 'number') {
+                        return value >= 0 && value <= 600;
+                    } else if (typeof value === 'string') {
+                        return value.toLowerCase() === 'pass' || value.toLowerCase() === 'all pass';
+                    }
+                    return false;
                 },
-                message: 'Marks must be a number between 0 and 600 or "pass"'
+                message: 'Marks must be a number between 0 and 600 or "Pass" or "All Pass"'
             }
         },
         passingYear: {
             type: Number,
             required: true,
             min: 1900,
-            max: new Date().getFullYear() + 1
+            max: new Date().getFullYear()
         }
     }],
+
+    twelfthSubjectMarks: [{
+        subjectName: { type: String, required: true },
+        marksObtained: { type: mongoose.Schema.Types.Mixed, required: true, min: 0, max: 100 }, // Allow Number or String
+        yearOfPassing: { type: Number, required: true, min: 1900, max: new Date().getFullYear() }
+    }],
+
+    mediumOfInstruction: { type: String, required: true, trim: true },
 
     documents: {
         aadharCard: { type: String, default: null },
@@ -218,15 +245,21 @@ const studentSchema = new mongoose.Schema({
         transferCertificate: { type: String, default: null },
         birthCertificate: { type: String, default: null },
         firstCertificate: { type: String, default: null },
-        photo: { type: String, default: null }
-    }
-}, {
+        photo: { type: String, default: null },
+        studentSignature: { type: String, default: null }
+    },
+
+    admissionStatus: {
+        status: { type: String, enum: ["Pending", "Admitted", "Rejected"], required: true },
+     // Add remarks field
+      },
+    missingFields: [String]
+}, 
+{
     collection: "students",
     timestamps: true
 });
 
 const Students = mongoose.model("Students", studentSchema, "students");
 
-
-// ✅ Export All Models Correctly
 module.exports = { LogInCollection, Students };
